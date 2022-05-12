@@ -27,6 +27,7 @@ urlpatterns = [
     path('accounts/login/login_validate/', views.login_validate, name="login_validate"),
     path("accounts/", include("django.contrib.auth.urls")),
     path("signup/",views.signup,name = "signup" ),
+    
     path('', views.home),
     path(
         'favicon.ico',

@@ -24,7 +24,7 @@ def login_validate(request):
     return HttpResponseRedirect('registration/login.html')
 
 def signup(request):
-    if request.method == 'POST':
+    if(request.POST):
         form = UserCreationForm(request.POST)
         if form.is_valid():
             form.save()

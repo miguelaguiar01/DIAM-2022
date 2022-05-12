@@ -1,6 +1,6 @@
 from django.contrib import admin
-from .models import Cadeira, ListaCadeiras
+from .models import Cadeira, Curso
 
 
 admin.site.register(Cadeira)
-admin.site.register(ListaCadeiras)
+admin.site.register(Curso)
