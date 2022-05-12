@@ -77,6 +77,16 @@
         float: right;
         padding-right: 8px;
     }
+    
+    .logout {
+        text-decoration: none;
+        color: black;
+    }
+    
+    .logout:hover {
+        color: red !important;
+        text-decoration: underline !important;
+    }
 </style>
 
 <body>
@@ -89,9 +99,12 @@
                     ASK-IUL
                 </a>
                 <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
-                <span class="navbar-toggler-icon"></span>
-            </button> {% if user.is_authenticated %} {{request.user.username}}
-                <p><a href="{% url 'logout' %}">Log Out</a></p>
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div style="display:flex;">{% if user.is_authenticated %}
+                    <p style="margin-right: 1rem;">{{request.user.username}}</p>
+                    <p><a class="logout" style="text-decoration: none; color:black" href="{% url 'logout' %}">Log Out</a></p>
+                </div>
                 {% else %}
                 <div class="collapse navbar-collapse" id="navbarCollapse">
                     <div class="navbar-nav ms-auto">

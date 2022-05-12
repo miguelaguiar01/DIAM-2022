@@ -10,8 +10,17 @@ def home(request):
     #return HttpResponse('home') 
     return render(request, 'home.html')
 
+def showLogin(request):
+    return render(request, 'registration/login.html')
 
-def login_go(request):
+def login_validate(request):
+    if(request.POST):
+        login_data = request.POST.dict()
+        username = login_data.get("name")
+        password = login_data.get("password")
+        user = authenticate(username=username, password=password)
+        login(request, user)
+        return redirect('/')    
     return HttpResponseRedirect('registration/login.html')
 
 def signup(request):
@@ -26,4 +35,5 @@ def signup(request):
             return redirect('/')
     else:
         form = UserCreationForm()
+        
     return render(request, 'registration/signup.html', {'form': form})
