@@ -1,20 +1,17 @@
 from django.db import models
-from django.template.defaultfilters import slufigy
-from django.contrib.auth.models import User
-from django.urls import reverse
 
-# Create models here: 
+class Cadeira(models.Model):
+    name = models.CharField(max_length=200)
+    descrição = models.CharField(max_length=200)
+    def __str__(self):
+        return self.name
 
-class cadeira(models.Model):
-    title = models.CharField(max_length=255)
-    description = models.TextField()
-    slug = models.SlugField(unique= True, max_length=255)
-    
+
+class ListaCadeiras(models.Model):
+    title = models.CharField(max_length=100, unique=True)
+
     def get_absolute_url(self):
-        return reverse("cadeira_detail", args={self.slug})
-    
-    def save(self, *args, **kwargs):
-        if not self.slug:
-            self.slug = slugify(self.title)
-        super(cadeira,self).save(*args, **kwargs)
-    
+        return reverse("list", args=[self.id])
+
+    def __str__(self):
+        return self.title

@@ -19,7 +19,7 @@ from django.contrib.staticfiles.storage import staticfiles_storage
 from django.views.generic.base import RedirectView
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from . import views
-
+admin.autodiscover()
 
 urlpatterns = [
     path('admin/', admin.site.urls),
