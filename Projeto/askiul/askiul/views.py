@@ -6,6 +6,8 @@ from django.contrib.auth import login
 from django.contrib import messages
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import authenticate
+
+from askiul.models import Curso
 def home(request):
     #return HttpResponse('home') 
     return render(request, 'home.html')
@@ -24,6 +26,8 @@ def login_validate(request):
     return HttpResponseRedirect('registration/login.html')
 
 def signup(request):
+    cursos_list = Curso.objects.all()
+    context = {'cursos_list':cursos_list}
     if(request.POST):
         form = UserCreationForm(request.POST)
         if form.is_valid():
@@ -36,4 +40,5 @@ def signup(request):
     else:
         form = UserCreationForm()
         
-    return render(request, 'registration/signup.html', {'form': form})
+    return render(request, 'registration/signup.html',{'form': form})
+
