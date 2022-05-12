@@ -24,6 +24,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path("login_go/",views.login_go, name='login'),
     path("accounts/", include("django.contrib.auth.urls")),
+    path("signup/",views.signup,name = "signup" ),
     path('', views.home),
     path(
         'favicon.ico',

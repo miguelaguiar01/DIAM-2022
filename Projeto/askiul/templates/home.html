@@ -91,14 +91,21 @@
                 <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
                 <span class="navbar-toggler-icon"></span>
             </button>
+            {% if user.is_authenticated %}
+            {{request.user.username}}
+                <p><a href="{% url 'logout' %}">Log Out</a></p>
+                {% else %}
+                
                 <div class="collapse navbar-collapse" id="navbarCollapse">
+
                     <div class="navbar-nav ms-auto">
                         <a href="{% url 'login' %}" class="nav-item nav-link">Login</a>
                         
                     </div>
                     
-                    <a href="#" style="text-decoration: none" class="nav-item nav-link">Register</a>
+                    <a href="{% url 'signup' %}" style="text-decoration: none" class="nav-item nav-link">Register</a>
                 </div>
+                {% endif %}
             </div>
         </nav>
         <!-- Sidebar nav -->
