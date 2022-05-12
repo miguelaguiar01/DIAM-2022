@@ -23,7 +23,8 @@ admin.autodiscover()
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path("login_go/",views.login_go, name='login'),
+    path("login_form/",views.showLogin, name='login'),
+    path('accounts/login/login_validate/', views.login_validate, name="login_validate"),
     path("accounts/", include("django.contrib.auth.urls")),
     path("signup/",views.signup,name = "signup" ),
     path('', views.home),
