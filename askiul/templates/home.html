@@ -124,8 +124,8 @@
 
         <!-- Sidebar nav -->
         <div class="sidenav bg-light">
-            {% for instance in cadeiras_list%}
-                <p>{{instance.name}}</p>
+            {% for cadeira in cadeiras%}
+                <a href="#" style="color: black;">{{cadeira.titulo}}</a>
             {% endfor %}
         </div>
 
@@ -137,8 +137,7 @@
                 {% endfor %}
             </h1>
             <div style="color: red">
-                IMAGEM PLACEHOLD
-                <img src="askiul/assets/askiul.png" alt="">
+                <img src="{% static 'iscte.png' %}">
             </div>
         </div>
     </div>

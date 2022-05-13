@@ -1,6 +1,6 @@
 from django.http import HttpResponse
 from django.shortcuts import render
-from Articles.models import Questao, Resposta
+from Articles.models import Questao, Resposta, Cadeira
 def home(request):
-    questoes = Questao.objects.all()
-    return render(request, "home.html", {'questoes':questoes})
+    cadeiras = Cadeira.objects.all()
+    return render(request, "home.html",{'cadeiras':cadeiras})

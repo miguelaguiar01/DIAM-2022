@@ -14,6 +14,12 @@ class Questao(models.Model):
 
     def __str__(self):
         return self.titulo
+class Cadeira(models.Model):
+    titulo=models.CharField(max_length=300)
+    descricao=models.CharField(max_length=300)
+
+    def __str__(self):
+        return self.titulo
 
 class Resposta(models.Model):
     questao = models.ForeignKey(Questao, on_delete=models.CASCADE)
