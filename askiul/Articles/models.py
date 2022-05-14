@@ -9,7 +9,7 @@ from django.contrib.auth.models import User
 class Cadeira(models.Model):
     titulo=models.CharField(max_length=300)
     descricao=models.CharField(max_length=300)
-    image = models.ImageField(default="askiul\assets\default.png",upload_to='images')
+    image = models.ImageField(default="\images\default.png",upload_to='images')
     
     def __str__(self):
         return self.titulo

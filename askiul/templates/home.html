@@ -61,6 +61,9 @@
         font-size: 20px;
         /* Increased text to enable scrolling */
         padding: 0px 10px;
+        display: grid;
+        grid-template-columns: repeat(3, 3fr);
+        grid-gap: 10px;
         text-align: center;
     }
     /* Add an active class to the active dropdown button */
@@ -135,7 +138,7 @@
                 {% for cadeira in cadeiras%}
                 <div class="container">
                     <div class="text" >{{cadeira.titulo}}</div>
-                    <img src="{{ cadeira.image.url }}" />
+                    <img src="{{ cadeira.image.url }}" href="#" />
                 </div>
                     
                 {% endfor %}
