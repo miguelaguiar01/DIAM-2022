@@ -15,7 +15,7 @@ class Cadeira(models.Model):
         return self.titulo
 class Questao(models.Model):
     user =models.ForeignKey(User, on_delete=models.CASCADE)
-    Cadeira =models.ForeignKey(Cadeira, on_delete=models.CASCADE)
+    cadeira =models.ForeignKey(Cadeira, on_delete=models.CASCADE)
     titulo=models.CharField(max_length=300)
     add_time= models.DateTimeField(auto_now_add=True)
 

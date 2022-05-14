@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+
 {% load static %}
 <html lang="en">
     <head>
@@ -128,20 +128,13 @@
 
         <!-- DASHBOARD -->
         <div class="main">
-            <a href="{% url 'articles:criar_questao' cadeira.id %}"><br>
-                Criar questão
-            </a><br>
-                {% for questao in cadeira.questao_set.all %}
-                    <div class="container">
-                        <div class="text" >{{questao.titulo}}</div>
-                            <a href="{% url 'answers:questao' questao.id%}">
-                                <button>pacoh</button>
-                            </a>
-                        
-                    </div>
-                    
-                </div>
-                {%endfor%}
+            <form action="{% url 'articles:criar_questao' cadeira.id %}" method="post">
+                {% csrf_token %}
+                <label for="question">Nova questão:
+                </label><br>
+                <input type="text" id="question" name="question"><br><br>
+                <input type="submit" value="Save" >
+            </form>
         </div>
     </div>
 </body>
