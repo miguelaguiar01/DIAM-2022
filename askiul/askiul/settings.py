@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'Articles',
     'Accounts',
     'askiul',
+    'Answers',
 ]
 
 MIDDLEWARE = [
