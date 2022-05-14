@@ -4,7 +4,7 @@ from django.contrib.auth import logout as django_logout
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import authenticate
 from django.http import HttpResponse
-from Articles.models import Questao, Resposta
+from Articles.models import Questao, Resposta, Cadeira
 from .forms import RegistrationForm
 # Create your views here.
 
@@ -19,8 +19,8 @@ def login_validate(request):
         password = login_data.get("password")
         user = authenticate(username=username, password=password)
         django_login(request, user)
-        questoes = Questao.objects.all()
-        return render(request, "home.html", {'questoes':questoes})
+        cadeiras = Cadeira.objects.all()
+        return render(request, "home.html", {'cadeiras':cadeiras})
      
 def signup_validate(request):
     if(request.POST):
@@ -31,8 +31,8 @@ def signup_validate(request):
         raw_password = form.cleaned_data.get('password1')
         user = authenticate(username=username, password=raw_password)
         django_login(request, user)
-        questoes = Questao.objects.all()
-        return render(request, "home.html", {'questoes':questoes})
+        cadeiras = Cadeira.objects.all()
+        return render(request, "home.html", {'cadeiras':cadeiras})
     else:
         form = UserCreationForm()
     return render(request, 'signup.html',{'form':form})
@@ -55,5 +55,6 @@ def signup(request):
 
 def logout(request):
         django_logout(request)
-        return render(request, "home.html")
+        cadeiras = Cadeira.objects.all()
+        return render(request, "home.html", {'cadeiras':cadeiras})
     

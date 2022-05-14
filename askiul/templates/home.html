@@ -124,6 +124,7 @@
 
         <!-- Sidebar nav -->
         <div class="sidenav bg-light">
+            <h3 style="color: black;font-weight: bold;margin-left: 1rem;">Lista de Cadeiras:</h3>
             {% for cadeira in cadeiras%}
                 <a href="#" style="color: black;">{{cadeira.titulo}}</a>
             {% endfor %}
@@ -131,14 +132,14 @@
 
         <!-- DASHBOARD -->
         <div class="main">
-            <h1>
-                {% for questao in questoes %}
-                    <h2>{{questao.titulo}}</h2>
+                {% for cadeira in cadeiras%}
+                <div class="container">
+                    <div class="text" >{{cadeira.titulo}}</div>
+                    <img src="{{ cadeira.image.url }}" />
+                </div>
+                    
                 {% endfor %}
-            </h1>
-            <div style="color: red">
-                <img src="{% static 'iscte.png' %}">
-            </div>
+            
         </div>
     </div>
 </body>
