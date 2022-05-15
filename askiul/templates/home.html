@@ -147,9 +147,10 @@
 
         <!-- Sidebar nav -->
         <div class="sidenav bg-light" style="padding: 10px; ">
-            <a href="{% url 'articles:criar_cadeira' %}"
-                style="text-decoration: none ;border: 1px solid; border-radius: 25px;" class="nav-item nav-link">Criar
-                Cadeira</a>
+            {% if user.is_superuser or account.is_admin %}
+            <a href="{% url 'articles:criar_cadeira' %}" style="text-decoration: none" class="nav-item nav-link">Criar Cadeira</a>
+            <a href="{% url 'accounts:gestao' %}" style="text-decoration: none" class="nav-item nav-link">Atribuir admin</a>
+            {% endif %}
             <div style="border: 1px solid; border-radius: 25px;margin-top: 50px;">
                 <h3 style="color: black;font-weight: bold;margin-left: 1rem;text-decoration-line: underline;">Lista de
                     Cadeiras:</h3>
