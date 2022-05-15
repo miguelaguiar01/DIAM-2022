@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+
 {% load static %}
 <html lang="en">
     <head>
@@ -123,30 +123,19 @@
 
         <!-- Sidebar nav -->
         <div class="sidenav bg-light">
-            <a href="{% url 'articles:delete_cadeira' cadeira.id %}"><br>
-                Apagar Cadeira
-            </a>
-            {% if user.is_authenticated %}
-            <a href="{% url 'articles:criar_questao' cadeira.id %}"><br>
-                Criar questão
-            </a><br>
-            {% endif %}
+            
         </div>
 
         <!-- DASHBOARD -->
         <div class="main">
-            
-                {% for questao in cadeira.questao_set.all %}
-                    <div class="container">
-                        <div class="text" >{{questao.titulo}}</div>
-                            <a href="{% url 'answers:questao' questao.id%}">
-                                <button>pacoh</button>
-                            </a>
-                        
-                    </div>
-                    
-                </div>
-                {%endfor%}
+            <form action="{% url 'articles:criar_cadeira'%}" method="post">
+                {% csrf_token %}
+                <label for="question">Nova Cadeira:
+                </label><br>
+                <input type="text" id="titulo" name="titulo"><br><br>
+                <input type="text" id="descricao" name="descricao"><br><br>
+                <input type="submit" value="Save" >
+            </form>
         </div>
     </div>
 </body>

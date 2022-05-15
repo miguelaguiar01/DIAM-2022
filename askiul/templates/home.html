@@ -127,9 +127,10 @@
 
         <!-- Sidebar nav -->
         <div class="sidenav bg-light">
+            <a href="{% url 'articles:criar_cadeira' %}" style="text-decoration: none" class="nav-item nav-link">Criar Cadeira</a>
             <h3 style="color: black;font-weight: bold;margin-left: 1rem;">Lista de Cadeiras:</h3>
             {% for cadeira in cadeiras%}
-                <a href="#" style="color: black;">{{cadeira.titulo}}</a>
+                <a href="{% url 'articles:cadeira' cadeira.id %}" style="color: black;">{{cadeira.titulo}}</a>
             {% endfor %}
         </div>
 

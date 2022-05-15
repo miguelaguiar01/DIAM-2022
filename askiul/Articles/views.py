@@ -28,3 +28,29 @@ def criar_questao(request,cadeira_id):
             return render(request, 'criar_questao.html',{'cadeira':cadeira} )
     else:
         return render(request, 'criar_questao.html',{'cadeira':cadeira} )
+
+
+def criar_cadeira(request):
+    if request.method == 'POST':
+        try:
+                new_cadeira = Cadeira(titulo=request.POST['titulo'],descricao=request.POST['descricao'])
+                cadeira_texto = new_cadeira.titulo
+        except KeyError:
+            return render(request, 'criar_cadeira.html' )
+        if cadeira_texto is not None:
+            cadeira = Cadeira(titulo=request.POST['titulo'],descricao=request.POST['descricao'])
+            cadeira.save()
+            cadeiras = Cadeira.objects.all()
+            return render(request, "home.html", {'cadeiras':cadeiras})
+        else:
+            return render(request, 'criar_cadeira.html')
+    else:
+        return render(request, 'criar_cadeira.html')
+
+
+
+def delete_cadeira(request, cadeira_id):
+    cadeira = get_object_or_404(Cadeira, pk= cadeira_id)
+    cadeira.delete()
+    cadeiras = Cadeira.objects.all()
+    return render(request, "home.html", {'cadeiras':cadeiras})

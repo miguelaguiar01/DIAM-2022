@@ -1,5 +1,6 @@
 from django.shortcuts import render,  get_object_or_404
 from Articles.models import Questao, Resposta, Cadeira
+from django.contrib.auth.decorators import login_required, permission_required
 
 # Create your views here.
 def questao(request, questao_id):
@@ -9,7 +10,6 @@ def questao(request, questao_id):
 def home(request):
     cadeiras = Cadeira.objects.all()
     return render(request, "home.html",{'cadeiras':cadeiras})
-
 
 def criar_resposta(request,questao_id):
     questao = get_object_or_404(Questao, pk= questao_id)
