@@ -128,13 +128,54 @@
 
         <!-- DASHBOARD -->
         <div class="main">
-            <form action="{% url 'answers:criar_resposta' questao.id %}" method="post">
-                {% csrf_token %}
-                <label for="resposta">Nova resposta:
-                </label><br>
-                <input type="text" id="title" name="title"><br><br>
-                <input type="submit" value="Save" >
-            </form>
+            {% if user.is_superuser %}
+            <h2>Atribuir Administrador</h2><br>
+            <form action="{% url 'accounts:submitatribuiradmin' %}" method="post">
+            {% csrf_token %}
+            <label for="user">Seleciona um utilizador:</label>
+            <select id="user" name="user">
+                {% for x in users %}
+                    {% if not x.is_superuser and not x.account.is_admin %}
+                        <option value="{{ x.username }}">{{ x.username }}</option>
+                    {% endif %}
+                {% endfor %}
+            </select>
+            <br><br><input id="submit" type="submit">
+            </form><br><br><br><hr>
+            {% endif %}
+            
+            
+            
+            <h2>Atribuir Professor</h2><br>
+            
+            
+            <form action="{% url 'accounts:submitatribuirprofessor' %}" method="post">
+            {% csrf_token %}
+            <label for="user">Seleciona um utilizador:</label>
+            <select id="user" name="user">
+                {% for x in users %}
+                    {% if not x.is_superuser and not x.account.is_professor %}
+                        <option value="{{ x.username }}">{{ x.username }}</option>
+                    {% endif %}
+                {% endfor %}
+            </select>
+            <br><br><input id="submit" type="submit">
+            </form><br><br><br><hr>
+
+            <h2>Atribuir Monitor</h2><br>
+            
+            <form action="{% url 'accounts:submitatribuirmonitor' %}" method="post">
+            {% csrf_token %}
+            <label for="user">Seleciona um utilizador:</label>
+            <select id="user" name="user">
+                {% for x in users %}
+                    {% if not x.is_superuser and not x.account.is_monitor and not x.account.is_professor %}
+                        <option value="{{ x.username }}">{{ x.username }}</option>
+                    {% endif %}
+                {% endfor %}
+            </select>
+            <br><br><input id="submit" type="submit">
+            </form><br><br><br><hr>
         </div>
     </div>
 </body>

@@ -1,5 +1,6 @@
 from django.shortcuts import render,  get_object_or_404
 from Articles.models import Questao, Resposta, Cadeira
+from django.shortcuts import redirect,HttpResponseRedirect,reverse
 # Create your views here.
 
 
@@ -23,7 +24,7 @@ def criar_questao(request,cadeira_id):
         if questao_texto is not None:
             questao = Questao(user = request.user,cadeira= cadeira,titulo=questao_texto)
             questao.save()
-            return render(request, 'question.html',{'cadeira':cadeira})
+            return HttpResponseRedirect(reverse('articles:cadeira', args=str(cadeira_id)))
         else:
             return render(request, 'criar_questao.html',{'cadeira':cadeira} )
     else:
@@ -41,7 +42,7 @@ def criar_cadeira(request):
             cadeira = Cadeira(titulo=request.POST['titulo'],descricao=request.POST['descricao'])
             cadeira.save()
             cadeiras = Cadeira.objects.all()
-            return render(request, "home.html", {'cadeiras':cadeiras})
+            return HttpResponseRedirect(reverse('articles:home'))
         else:
             return render(request, 'criar_cadeira.html')
     else:
@@ -53,4 +54,4 @@ def delete_cadeira(request, cadeira_id):
     cadeira = get_object_or_404(Cadeira, pk= cadeira_id)
     cadeira.delete()
     cadeiras = Cadeira.objects.all()
-    return render(request, "home.html", {'cadeiras':cadeiras})
+    return HttpResponseRedirect(reverse('articles:home'))

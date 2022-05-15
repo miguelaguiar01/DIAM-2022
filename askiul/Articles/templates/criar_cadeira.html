@@ -134,7 +134,8 @@
                 </label><br>
                 <input type="text" id="titulo" name="titulo"><br><br>
                 <input type="text" id="descricao" name="descricao"><br><br>
-                <input type="submit" value="Save" >
+                <input type="hidden" name="next" value="{{ request.path }}">
+                <input type="submit" value="Save" href="{% url 'articles:home'%}" >
             </form>
         </div>
     </div>
