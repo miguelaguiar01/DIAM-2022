@@ -21,7 +21,7 @@ def criar_resposta(request,questao_id):
         except KeyError:
             return render(request, 'criar_resposta.html',{'questao':questao} )
         if resposta_texto is not None:
-            resposta = Resposta(user = request.user,questao= questao,titulo=resposta_titulo)
+            resposta = Resposta(user = request.user,questao= questao,titulo=resposta_titulo, resposta= resposta_texto)
             resposta.save()
             return HttpResponseRedirect(reverse('answers:questao', args=str(questao_id)))
         else:

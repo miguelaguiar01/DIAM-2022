@@ -166,7 +166,9 @@
         {% for questao in cadeira.questao_set.all %}
         <div class="container"
             style="align-items: center; margin-bottom:50px;font-weight: bolder;border: 2px solid #005f9f; border-radius: 25px;box-shadow: 2px 3px #888888; padding: 20px;">
+            <h2>User: {{questao.user.username}}</h2>
             <h1>{{questao.titulo}}</h1>
+            
             <a href="{% url 'answers:questao' questao.id%}">
                 <button class="btn btn-primary">Responder Questao</button>
             </a>

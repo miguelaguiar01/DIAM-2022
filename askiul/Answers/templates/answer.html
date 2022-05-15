@@ -147,11 +147,14 @@
     <div class="main" style="display: block;text-align: justify;">
         <h1
             style="display:flex; justify-content:center; border: 2px solid #005f9f; border-radius: 25px;align-items: center;box-shadow: 2px 3px #888888;height: 100px;">
-            {{questao.titulo}}</h1>
+            User: {{questao.user.username}}  {{questao.titulo}}</h1>
         {% for resposta in questao.resposta_set.all %}
         <div class="container" style="border-bottom: 2px solid #005f9f;">
             <div class="text">
+                <h2>User: {{resposta.user.username}}</h2>
                 <ol>{{resposta.titulo}}</ol>
+                <h2>{{resposta.resposta}}</h2>
+                <h3>{{resposta.add_time}}</h3>
             </div>
         </div>
         {%endfor%}
