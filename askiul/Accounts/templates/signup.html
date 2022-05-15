@@ -12,76 +12,74 @@
     <title>Registar</title>
 </head>
 
+
 <body>
-    <section class="vh-100" style="background-color: #508bfc;">
+    <section class="vh-100" style="background-color: #005f9f;">
         <div class="container py-5 h-100" style="font-family:Raleway;">
             <div class="row d-flex justify-content-center align-items-center h-100">
                 <div class="col-12 col-md-8 col-lg-6 col-xl-5">
                     <div class="card shadow-2-strong" style="border-radius: 1rem;">
                         <div class="card-body p-5 text-center" style="font-family:Raleway;">
-
-                            <h2 class="mb-5">Register</h2>
-                            <form action="{% url 'accounts:signup' %}" method="post">
+                            <h2 class="mb-5">Sign in</h2>
+                            <form action="{% url 'accounts:login_validate' %}" method="post">
                                 {% csrf_token %}
-                                <label for="username">Username:
-                                </label><br>
-                                <input type="text" id="username" name="username" value="{{ username }}"><br>
-                                <label for="email">Email:
-                                </label><br>
-                                <input type="email" id="email" name="email" value="{{ email }}"><br>
-                                <label for="password">Password:
-                                </label><br>
-                                <div class="invalid-feedback" id="pass_error" style="text-align:left; color:red; display:none;">
+                                <div class="form-outline mb-4">
+                                    <input type="text" id="username" name="username" placeholder="Username"
+                                        class="form-control form-control-lg" value="{{ username }}" required />
+                                </div>
+                                <div class="form-outline mb-4">
+                                    <input type="email" name="email" id="email" placeholder="email " value="{{ email }}"
+                                        class="form-control form-control-lg" required />
+                                </div>
+                                <div class="invalid-feedback" id="pass_error"
+                                    style="text-align:left; color:red; display:none;">
                                     *As password devem ser iguais!
                                 </div>
-                                <input type="password" id="password" name="password" value="{{ password }}"><br><br>
-                                <input type="submit" onclick="canSend(event)" value="Registar"><br><br>
+                                <div class="form-outline mb-4">
+                                    <input type="password" name="password" id="password" placeholder="password "
+                                        value="{{ password }}" class="form-control form-control-lg" required />
+                                </div>
+                                <button class="btn btn-primary btn-lg btn-block" type="submit"
+                                    onclick="canSend(event)">Registar</button>
                             </form>
-
-
-
-
-
-
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </section>
-    <script>
-        function checkError() {
+        <script>
+            function checkError() {
 
-            if (checkPass()) {
+                if (checkPass()) {
 
-                document.getElementById("typePasswordConfirm").style.borderColor = "";
-                document.getElementById("pass_error").style.display = "none";
+                    document.getElementById("typePasswordConfirm").style.borderColor = "";
+                    document.getElementById("pass_error").style.display = "none";
 
-            } else {
+                } else {
 
-                document.getElementById("typePasswordConfirm").style.borderColor = "red";
-                document.getElementById("pass_error").style.display = "inline";
+                    document.getElementById("typePasswordConfirm").style.borderColor = "red";
+                    document.getElementById("pass_error").style.display = "inline";
+
+                }
 
             }
 
-        }
-
-        function checkPass() {
-            let pass = document.getElementById("typePassword").value;
-            let passConf = document.getElementById("typePasswordConfirm").value;
-            if (pass != passConf) {
-                return false;
-            } else {
-                return true;
+            function checkPass() {
+                let pass = document.getElementById("typePassword").value;
+                let passConf = document.getElementById("typePasswordConfirm").value;
+                if (pass != passConf) {
+                    return false;
+                } else {
+                    return true;
+                }
             }
-        }
 
-        function canSend(event) {
-            if (!checkPass()) {
-                event.preventDefault();
+            function canSend(event) {
+                if (!checkPass()) {
+                    event.preventDefault();
+                }
             }
-        }
-    </script>
+        </script>
 </body>
 
 </html>
