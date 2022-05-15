@@ -146,13 +146,15 @@
     <!-- Sidebar nav -->
     <div class="sidenav bg-light" style="padding: 10px;">
         <a href="{% url 'articles:delete_cadeira' cadeira.id %} "
-            style="text-decoration: none ;border: 1px solid; border-radius: 25px;" class="cadeiras ">
+            style="text-decoration: none; border: 2px solid #005f9f; border-radius: 25px;box-shadow: 5px 10px #888888; "
+            class="cadeiras ">
             Apagar Cadeira
         </a> <br>
 
         {% if user.is_authenticated %}
         <a href="{% url 'articles:criar_questao' cadeira.id %}"
-            style="text-decoration: none ;border: 1px solid; border-radius: 25px;" class="cadeiras">
+            style="text-decoration: none; border: 2px solid #005f9f; border-radius: 25px;box-shadow: 5px 10px #888888; "
+            class="cadeiras">
             Criar questão
         </a><br>
         {% endif %}
