@@ -128,17 +128,14 @@
 
         <!-- DASHBOARD -->
         <div class="main">
-            <a href="{% url 'answers:criar_resposta' questao.id %}"><br>
-                Criar resposta
-            </a><br>
-            {% for resposta in questao.resposta_set.all %}
-                    <div class="container">
-                        <div class="text" >{{resposta.titulo}}</div>
-                        
-                    </div>
-                    
-                </div>
-                {%endfor%}
+            <form action="{% url 'answers:criar_resposta' questao.id %}" method="post">
+                {% csrf_token %}
+                <label for="resposta">Nova resposta:
+                </label><br>
+                <input type="text" id="title" name="title"><br><br>
+                <input type="text" id="resposta" name="resposta"><br><br>
+                <input type="submit" value="Save" >
+            </form>
         </div>
     </div>
 </body>

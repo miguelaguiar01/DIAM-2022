@@ -5,7 +5,11 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import authenticate
 from django.http import HttpResponse
 from Articles.models import Questao, Resposta, Cadeira
-from .forms import RegistrationForm
+from .models import Account
+from django.views.generic.edit import CreateView
+from django.urls import reverse_lazy
+from django.contrib.auth import get_user_model
+from django.contrib.auth.models import User
 # Create your views here.
 
 
@@ -22,36 +26,20 @@ def login_validate(request):
         cadeiras = Cadeira.objects.all()
         return render(request, "home.html", {'cadeiras':cadeiras})
      
-def signup_validate(request):
+def signup(request):
     if(request.POST):
-        form = RegistrationForm(request.POST)
-        print(form)
-        form.save()
-        username = form.cleaned_data.get('username')
-        raw_password = form.cleaned_data.get('password1')
-        user = authenticate(username=username, password=raw_password)
+        username = request.POST['username']
+        email = request.POST['email']
+        password = request.POST['password']
+        user = User.objects.create_user(username, email, password)
+        account = Account(user=user)
+        account.save()
         django_login(request, user)
         cadeiras = Cadeira.objects.all()
         return render(request, "home.html", {'cadeiras':cadeiras})
     else:
-        form = UserCreationForm()
-    return render(request, 'signup.html',{'form':form})
-    
-def signup(request):
-    
-    if(request.POST):
-        form = UserCreationForm(request.POST)
-        if form.is_valid():
-            form.save()
-            username = form.cleaned_data.get('username')
-            raw_password = form.cleaned_data.get('password1')
-            user = authenticate(username=username, password=raw_password)
-            login(request, user)
-            return redirect('/')
-    else:
-        form = UserCreationForm()
-        
-    return render(request, 'signup.html',{'form': form})
+        return render(request, "signup.html")
+
 
 def logout(request):
         django_logout(request)

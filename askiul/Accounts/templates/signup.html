@@ -23,29 +23,26 @@
                             <h2 class="mb-5">Register</h2>
                             <form action="{% url 'accounts:signup' %}" method="post">
                                 {% csrf_token %}
-                                <div class="form-outline mb-4">
-                                    <input type="text" id="typeName" placeholder="Nome" class="form-control form-control-lg" required/>
+                                <label for="username">Username:
+                                </label><br>
+                                <input type="text" id="username" name="username" value="{{ username }}"><br>
+                                <label for="email">Email:
+                                </label><br>
+                                <input type="email" id="email" name="email" value="{{ email }}"><br>
+                                <label for="password">Password:
+                                </label><br>
+                                <div class="invalid-feedback" id="pass_error" style="text-align:left; color:red; display:none;">
+                                    *As password devem ser iguais!
                                 </div>
-                                <div class="form-outline mb-4">
-                                    <input type="email" id="typeEmail" placeholder="Email" class="form-control form-control-lg" required/>
-                                </div>
-                                <div class="form-outline mb-4">
-                                    <input type="password" id="typePassword" placeholder="Password" class="form-control form-control-lg" required/>
-                                </div>
-
-
-                                <div class="form-outline mb-4 needs-validation">
-                                    <input type="password" id="typePasswordConfirm" oninput="checkError()" placeholder="Confirmar " class="form-control form-control-lg" required/>
-                                    <div class="invalid-feedback" id="pass_error" style="text-align:left; color:red; dysplay:none;">
-                                        *As password devem ser iguais!
-                                    </div>
-                                </div>
-
-
-
-                                <button class="btn btn-primary btn-lg btn-block" onclick="canSend(event)" type="submit">Registar</button>
-
+                                <input type="password" id="password" name="password" value="{{ password }}"><br><br>
+                                <input type="submit" onclick="canSend(event)" value="Registar"><br><br>
                             </form>
+
+
+
+
+
+
                         </div>
                     </div>
                 </div>

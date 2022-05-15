@@ -23,8 +23,7 @@ def criar_questao(request,cadeira_id):
         if questao_texto is not None:
             questao = Questao(user = request.user,cadeira= cadeira,titulo=questao_texto)
             questao.save()
-            cadeiras = Cadeira.objects.all()
-            return render(request, "home.html",{'cadeiras':cadeiras})
+            return render(request, 'question.html',{'cadeira':cadeira})
         else:
             return render(request, 'criar_questao.html',{'cadeira':cadeira} )
     else:
