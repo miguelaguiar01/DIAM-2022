@@ -148,10 +148,16 @@
         <!-- Sidebar nav -->
         <div class="sidenav bg-light" style="padding: 10px; ">
             {% if user.is_superuser or account.is_admin %}
-            <a href="{% url 'articles:criar_cadeira' %}" style="text-decoration: none" class="nav-item nav-link">Criar Cadeira</a>
-            <a href="{% url 'accounts:gestao' %}" style="text-decoration: none" class="nav-item nav-link">Atribuir admin</a>
+            <a href="{% url 'articles:criar_cadeira' %}"
+                style="text-decoration: none; border: 2px solid #005f9f; border-radius: 25px;box-shadow: 5px 10px #888888; margin-bottom: 20px;"
+                class="nav-item nav-link">Criar Cadeira</a>
+            <a href="{% url 'accounts:gestao' %}"
+                style="text-decoration: none; border: 2px solid #005f9f; border-radius: 25px;box-shadow: 5px 10px #888888;"
+                class="nav-item nav-link">Atribuir
+                admin</a>
             {% endif %}
-            <div style="border: 1px solid; border-radius: 25px;margin-top: 50px;">
+            <div
+                style="text-decoration: none; border: 2px solid #005f9f; border-radius: 25px;box-shadow: 5px 10px #888888; margin-bottom: 20px;margin-top: 50px;">
                 <h3 style="color: black;font-weight: bold;margin-left: 1rem;text-decoration-line: underline;">Lista de
                     Cadeiras:</h3>
                 {% for cadeira in cadeiras%}
@@ -163,12 +169,13 @@
         <!-- DASHBOARD -->
         <div class="main" style="display: grid;justify-items: center;">
             {% for cadeira in cadeiras%}
-            <div class="card" style="width: 24rem;">
+            <div class="card"
+                style="width: 27rem;border: 2px solid #005f9f; border-radius: 25px;box-shadow: 5px 10px #888888;overflow-x: hidden;padding: 20px;">
                 <img src="{{ cadeira.image.url }}" class="card-img-top" alt="{{ cadeira.image.url }}"
-                    style="height: -webkit-fill-available; max-height: 250px;">
+                    style="height: -webkit-fill-available; max-height: 250px;border-radius: inherit;">
                 <div class="card-body">
-                    <h5 class="card-title">{{cadeira.titulo}}</h5>
-                    <a href="{% url 'articles:cadeira' cadeira.id %}" class="btn btn-primary">Enter Course</a>
+                    <h4 class="card-title">{{cadeira.titulo}}</h4>
+                    <a href=" {% url 'articles:cadeira' cadeira.id %}" class="btn btn-primary">Enter Course</a>
                 </div>
             </div>
 
