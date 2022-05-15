@@ -144,16 +144,20 @@
 
     <!-- DASHBOARD -->
     <div class="main" style="display: block;text-align: justify;">
-        <h1
+        <div
             style="display:flex; justify-content:center; border: 2px solid #005f9f; border-radius: 25px;align-items: center;box-shadow: 2px 3px #888888;height: 100px;">
-            User: {{questao.user.username}}  {{questao.titulo}}</h1>
+
+            <h1>{{questao.titulo}}</h1>
+            <h6 <i class="fa fa-user" style="margin-right: 5px;margin-left: 15px;place-self: end;"></i>by:
+                {{questao.user.username}}</h4>
+        </div>
         {% for resposta in questao.resposta_set.all %}
         <div class="container" style="border-bottom: 2px solid #005f9f;">
             <div class="text">
-                <h2>User: {{resposta.user.username}} {{resposta.user.groups.all.0.name}}</h2>
-                <ol>{{resposta.titulo}}</ol>
-                <h2>{{resposta.resposta}}</h2>
-                <h3>{{resposta.add_time}}</h3>
+                <h4 style="display: flex;"><i class="fa fa-user" style="margin-right: 5px;"></i>
+                    {{questao.user.username}}
+                    <h3><i class="fa-solid fa-arrow-right-long" style="margin-right: 5px;"></i>{{resposta.titulo}}</h3>
+                    <h5><i class="fa-solid fa-clock" style="margin-right: 5px;"></i>{{resposta.add_time}}</h5>
             </div>
         </div>
         {%endfor%}
