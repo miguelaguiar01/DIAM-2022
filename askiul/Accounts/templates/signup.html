@@ -21,7 +21,7 @@
                     <div class="card shadow-2-strong" style="border-radius: 1rem;">
                         <div class="card-body p-5 text-center" style="font-family:Raleway;">
                             <h2 class="mb-5">Sign in</h2>
-                            <form action="{% url 'accounts:login_validate' %}" method="post">
+                            <form action="{% url 'accounts:signup' %}" method="post">
                                 {% csrf_token %}
                                 <div class="form-outline mb-4">
                                     <input type="text" id="username" name="username" placeholder="Username"
