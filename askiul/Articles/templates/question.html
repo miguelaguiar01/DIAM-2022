@@ -124,9 +124,8 @@
             <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <div style="display:flex;">{% if user.is_authenticated %} {% for group in user.groups.all %} {{ group.name
-                }} {% endfor %}
-                <p style="margin-right: 1rem;">{{request.user.username}}</p>
+            <div style="display:flex;">{% if user.is_authenticated %}
+                <p style="margin-right: 1rem;">{{user.groups.all.0.name}} {{request.user.username}}</p>
                 <p><a class="logout" style="text-decoration: none; color:black" href="{% url 'accounts:logout' %}">Log
                         Out</a></p>
                 {% csrf_token %}

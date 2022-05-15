@@ -10,6 +10,7 @@ from django.views.generic.edit import CreateView
 from django.urls import reverse_lazy
 from django.contrib.auth import get_user_model
 from django.contrib.auth.models import User
+from django.contrib.auth.models import Group
 # Create your views here.
 
 def home(request):
@@ -33,6 +34,8 @@ def signup(request):
         email = request.POST['email']
         password = request.POST['password']
         user = User.objects.create_user(username, email, password)
+        group = Group.objects.get(name= "Aluno")
+        group.user_set.add(user)
         account = Account(user=user)
         account.save()
         django_login(request, user)
@@ -45,6 +48,10 @@ def gestao(request):
 def submitatribuiradmin(request):
     u = request.POST['user']
     user = User.objects.get(username=u)
+    group = Group.objects.get(name= "Admin")
+    group.user_set.add(user)
+    group = Group.objects.get(name= "Aluno")
+    group.user_set.remove(user)
     account = Account.objects.get(user=user)
     account.make_admin()
     account.save()
@@ -52,6 +59,10 @@ def submitatribuiradmin(request):
 def submitatribuirprofessor(request):
     u = request.POST['user']
     user = User.objects.get(username=u)
+    group = Group.objects.get(name= "Professor")
+    group.user_set.add(user)
+    group = Group.objects.get(name= "Aluno")
+    group.user_set.remove(user)
     account = Account.objects.get(user=user)
     account.make_professor()
     account.save()
@@ -59,6 +70,10 @@ def submitatribuirprofessor(request):
 def submitatribuirmonitor(request):
     u = request.POST['user']
     user = User.objects.get(username=u)
+    group = Group.objects.get(name= "Monitor")
+    group.user_set.add(user)
+    group = Group.objects.get(name= "Aluno")
+    group.user_set.remove(user)
     account = Account.objects.get(user=user)
     account.make_monitor()
     account.save()
